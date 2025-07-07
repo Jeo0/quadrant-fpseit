@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dasxocx63luhl"]
+
+[ext_resource type="Script" uid="uid://ksls2nq4rvb1" path="res://scripts/bullet.gd" id="1_mkf8s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1aey"]
+albedo_color = Color(0.898922, 0.186771, 0, 1)
+emission_enabled = true
+emission = Color(0.648407, 0.0798211, 0, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_mkf8s"]
+material = SubResource("StandardMaterial3D_h1aey")
+size = Vector3(0.05, 0.05, 0.1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mkf8s"]
+lifetime_randomness = 0.34
+direction = Vector3(0, 0, 1)
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y25gk"]
+albedo_color = Color(0.777732, 0.39818, 0.0802184, 1)
+emission_enabled = true
+emission = Color(0.878822, 0.0287755, 9.62615e-08, 1)
+emission_energy_multiplier = 11.05
+
+[sub_resource type="PrismMesh" id="PrismMesh_l5glv"]
+material = SubResource("StandardMaterial3D_y25gk")
+size = Vector3(0.04, 0.04, 0.04)
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_mkf8s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mkf8s")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_mkf8s")
+draw_pass_1 = SubResource("PrismMesh_l5glv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

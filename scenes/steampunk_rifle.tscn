@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://c42vqrvqur0mk"]
+
+[ext_resource type="PackedScene" uid="uid://beylmx8mc8h0i" path="res://assets/Models/SteampunkGun/Steampunk Rifle.glb" id="1_rkhyx"]
+
+[sub_resource type="Animation" id="Animation_jrgtt"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_rkhyx"]
+resource_name = "fire_animation"
+length = 0.1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.0333333, 1, 0, 0.05, 0.29, 0.1, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_65nsj"]
+_data = {
+&"RESET": SubResource("Animation_jrgtt"),
+&"fire_animation": SubResource("Animation_rkhyx")
+}
+
+[node name="Steampunk Rifle" instance=ExtResource("1_rkhyx")]
+
+[node name="Node" parent="." index="0"]
+cast_shadow = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_65nsj")
+}
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.414461)
+target_position = Vector3(0, 0, -1)
