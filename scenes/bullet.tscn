@@ -35,11 +35,11 @@ script = ExtResource("1_mkf8s")
 mesh = SubResource("BoxMesh_mkf8s")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, -1)
+target_position = Vector3(0, 0, -2.775)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 5
+amount = 12
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_mkf8s")

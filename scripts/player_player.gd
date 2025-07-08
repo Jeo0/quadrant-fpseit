@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 const g_walkSpeed: float = 5.0
-const g_sprintSpeed: float = 9.0
+const g_sprintSpeed: float = 14.
 var g_currentSpeed: float = 0
 var g_running: bool = false
 
