@@ -35,8 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://cr4qha2r04fbq" path="res://assets/Textures/enemy/attack_eat_animation0031.png" id="34_yb7ap"]
 [ext_resource type="Texture2D" uid="uid://v0rs6v02tssj" path="res://assets/Textures/enemy/attack_eat_animation0032.png" id="35_by3os"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7p1mj"]
-points = PackedVector3Array(-1.01587, -1.01587, -0.015873, 1.01587, 1.01587, 0.015873, 1.01587, 1.01587, -0.015873, -1.01587, 1.01587, 0.015873, 1.01587, -1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, 0.015873)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ekh6n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o6r7o"]
 animations = [{
@@ -142,7 +141,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack_eat",
-"speed": 30.0
+"speed": 44.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -159,13 +158,11 @@ script = ExtResource("1_md0e3")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_7p1mj")
+shape = SubResource("CapsuleShape3D_ekh6n")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="attack_eat_anim" type="AnimatedSprite3D" parent="."]
 pixel_size = 0.002
 sprite_frames = SubResource("SpriteFrames_o6r7o")
-animation = &"walking"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+animation = &"attack_eat"

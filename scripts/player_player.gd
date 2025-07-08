@@ -22,8 +22,10 @@ var m_bob_time: float = 1.0
 
 # bullets
 var g_bullet = load("res://scenes/bullet.tscn")
-var g_bullet_instance
+var g_bullet_instance = null
 
+# menu controls
+var g_escape: bool = false
 const g_sensitivity: float = 0.0025
 @onready var neck = $Neck
 @onready var camera = $Neck/Camera3D
@@ -44,6 +46,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# add escape for mouse
+	if Input.is_action_just_pressed("escape"):
+		g_escape = !g_escape
+		
+	if g_escape:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+		
+			
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
